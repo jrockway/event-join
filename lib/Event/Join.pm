@@ -30,13 +30,18 @@ has 'received_events' => (
     },
 );
 
+sub _check_event_name {
+    my ($self, $event_name) = @_;
+    confess "'$event_name' is an unknown event"
+      unless first { $event_name eq $_ } $self->events;
+}
+
 before send_event => sub {
     my ($self, $event_name) = @_;
     confess "Already sent event '$event_name'"
       if $self->event_sent($event_name);
 
-    confess "'$event_name' is an unknown event"
-      unless first { $event_name eq $_ } $self->events;
+    $self->_check_event_name($event_name);
 };
 
 after send_event => sub {
@@ -50,6 +55,14 @@ after send_event => sub {
         $self->on_completion->( $self->received_events );
     }
 };
+
+sub event_sender_for {
+    my ($self, $event) = @_;
+    $self->_check_event_name($event);
+    return sub {
+        $self->send_event($event, @_);
+    };
+}
 
 1;
 
@@ -128,6 +141,12 @@ Finally, an exception is thrown if an event is sent more than once.
 Returns true if the event has been sent, false otherwise.  Note that
 the true value is I<not> the value that was passed to C<send_event>,
 it is just an arbitrary non-false value.
+
+=head2 event_sender_for( $event_name )
+
+Returns a coderef that sends C<$event_name> when run.  The first
+argument to the coderef will become the second argument to
+C<send_event>.
 
 =head1 PATCHES
 
