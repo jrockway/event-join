@@ -12,6 +12,13 @@ has 'events' => (
     auto_deref => 1,
 );
 
+has 'on_event' => (
+    is       => 'ro',
+    isa      => 'CodeRef',
+    default  => sub { sub {} },
+    required => 1,
+);
+
 has 'on_completion' => (
     is       => 'ro',
     isa      => 'CodeRef',
@@ -45,7 +52,9 @@ before send_event => sub {
 };
 
 after send_event => sub {
-    my $self = shift;
+    my ($self, @args) = @_;
+
+    $self->on_event->(@args);
 
     my $done = reduce { $a && $b } (
         1, map { $self->event_sent($_) } $self->events,
