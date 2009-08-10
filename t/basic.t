@@ -8,7 +8,6 @@ my $done;
 my $joiner = Event::Join->new(
     events        => [qw/foo bar baz/],
     on_completion => sub { $done = $_[0] },
-    strict        => 1,
 );
 
 isa_ok $joiner, 'Event::Join';
