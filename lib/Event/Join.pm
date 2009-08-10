@@ -3,7 +3,7 @@ use Moose;
 use MooseX::AttributeHelpers;
 use List::Util qw(reduce first);
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 has 'events' => (
     is         => 'ro',
