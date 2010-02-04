@@ -1,3 +1,6 @@
+0.03 Thu Feb  4 02:31:16 CST 2010
+     - remove MooseX::AttributeHelpers dep and use the core moose stuff instead
+
 0.02 Mon Aug 10 01:34:30 CDT 2009
      - add on_event callback that is called when an event is successfully received
 

@@ -3,7 +3,7 @@ use Moose;
 use MooseX::AttributeHelpers;
 use List::Util qw(reduce first);
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 has 'events' => (
     is         => 'ro',
@@ -26,14 +26,14 @@ has 'on_completion' => (
 );
 
 has 'received_events' => (
-    metaclass => 'Collection::Hash',
-    is        => 'ro',
-    isa       => 'HashRef',
-    default   => sub { +{} },
-    required  => 1,
-    provides  => {
-        set    => 'send_event',
-        exists => 'event_sent',
+    traits   => ['Hash'],
+    is       => 'ro',
+    isa      => 'HashRef',
+    default  => sub { +{} },
+    required => 1,
+    handles  => {
+        'send_event' => 'set',
+        'event_sent' => 'exists',
     },
 );
 
