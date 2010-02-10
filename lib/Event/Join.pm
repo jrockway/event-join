@@ -1,9 +1,8 @@
 package Event::Join;
 use Moose;
-use MooseX::AttributeHelpers;
 use List::Util qw(reduce first);
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 has 'events' => (
     is         => 'ro',

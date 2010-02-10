@@ -1,3 +1,6 @@
+0.04 Wed Feb 10 04:21:57 CST 2010
+     - remove MooseX::AttributeHelpers from the top of the file also...
+
 0.03 Thu Feb  4 02:31:16 CST 2010
      - remove MooseX::AttributeHelpers dep and use the core moose stuff instead
 
