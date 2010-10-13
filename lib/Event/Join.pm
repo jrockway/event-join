@@ -50,6 +50,11 @@ before send_event => sub {
     $self->_check_event_name($event_name);
 };
 
+around send_event => sub {
+    my ($orig, $self, $event_name, $value) = @_;
+    $self->$orig($event_name, $value);
+};
+
 after send_event => sub {
     my ($self, @args) = @_;
 
