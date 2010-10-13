@@ -1,3 +1,6 @@
+0.05 Tue Oct 12 22:56:37 CDT 2010
+     - work around new Moose feature
+
 0.04 Wed Feb 10 04:21:57 CST 2010
      - remove MooseX::AttributeHelpers from the top of the file also...
 
