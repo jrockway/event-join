@@ -8,5 +8,6 @@ requires 'Moose' => '0.94';
 
 test_requires 'Test::More';
 test_requires 'ok';
+test_requires 'Test::Exception';
 
 WriteAll();

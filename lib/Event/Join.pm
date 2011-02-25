@@ -2,7 +2,7 @@ package Event::Join;
 use Moose;
 use List::Util qw(reduce first);
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 has 'events' => (
     is         => 'ro',
